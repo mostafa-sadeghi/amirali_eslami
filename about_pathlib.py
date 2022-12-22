@@ -33,6 +33,28 @@ from pathlib import Path
 # path.write_text("....")
 
 # copy files:
-source = Path("target/__init__.py")
-dest = Path()/"some.py"
-dest.write_text(source.read_text())
+# source = Path("target/__init__.py")
+# dest = Path()/"some.py"
+# dest.write_text(source.read_text())
+
+# import shutil
+# source = Path("target/__init__.py")
+# dest = Path()/"sw.py"
+# shutil.copy(source, dest)
+
+# zip file
+from zipfile import ZipFile
+# with ZipFile("temp.zip") as zip:
+#     files = zip.namelist()
+#     for path in files:
+#         file = Path(path)
+#         print(file.read_bytes())
+#         print('--------------------------------------')
+
+with ZipFile("temp.zip") as zip:
+    files = zip.namelist()
+    print(files)
+    info = zip.getinfo('f.txt')
+    info = zip.getinfo('file.txt')
+    print(info)
+    zip.extractall()
