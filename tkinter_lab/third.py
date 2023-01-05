@@ -31,7 +31,11 @@ from PIL import Image, ImageTk
 # using grid layout manager
 root = tk.Tk()
 root.geometry("250x150")
-root.resizable(False, False)
+style = ttk.Style(root)
+style.theme_use('clam')
+style.configure("TLabel", bordercolor="red")
+
+# root.resizable(False, False)
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 root.rowconfigure(1, weight=1)
@@ -43,18 +47,21 @@ photo = ImageTk.PhotoImage(image)
 
 user_name = tk.StringVar()
 # Frame for input
-input_frame = ttk.LabelFrame(root, text="input", padding=(10, 15, 10, 15))
+input_frame = ttk.LabelFrame(root, text="input", padding=(10, 15))
 input_frame.grid(row=0, column=0, sticky="nsew")
 
 input_frame.columnconfigure(0, weight=1)
 input_frame.columnconfigure(1, weight=1)
 input_frame.rowconfigure(0, weight=1)
 
-input_label = ttk.Label(input_frame, text="name", image=photo, compound="left")
+input_label = ttk.Label(input_frame, text="name", border=4,  anchor="center", relief="solid",
+                        image=photo, compound="left")
+print(style.layout("TLabel"))
+print(style.element_options("Label.border"))
 input_label.grid(row=0, column=0, padx=10, sticky="nsew")
-input_label.config(font=("Arial", 10))
-input_label = ttk.Entry(input_frame, textvariable=user_name)
-input_label.grid(row=0, column=1, sticky="nsew")
+# input_label.config(font=("Arial", 10))
+input_entry = ttk.Entry(input_frame, textvariable=user_name)
+input_entry.grid(row=0, column=1, sticky="nsew")
 
 # buttons Frame
 
